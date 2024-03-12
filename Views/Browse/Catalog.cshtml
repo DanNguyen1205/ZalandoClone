@@ -1,0 +1,173 @@
+﻿@{
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //Use viewdata to pass values to partial view (pager in this instance)
+    String category = ViewBag.Category;
+    ViewData["category"] = category;
+
+    Pager pager = new Pager();
+    int pageNo = 0;
+    int pageSize = 0;
+    if(ViewBag.Pager != null)
+    {
+        pager = ViewBag.Pager;
+        pageNo = pager.CurrentPage;
+        pageSize = pager.PageSize;
+    }
+
+
+
+
+    string url = Context.Request.Path;
+}
+
+@model List<ZaunShop.Models.DomainModels.Product>;
+
+@using Microsoft.AspNetCore.Http
+@using ZaunShop.Models.TempModels
+
+@section Scripts {
+    <script>
+
+        function buyFunction(productId) {
+            //Change cart icon quantity
+
+            var serviceURL = '@Url.Action("AddToCart", "Cart")';
+
+            $.ajax({
+                type: "POST",
+                url: serviceURL,
+                data: { productId: productId },
+                success: function (result) {
+
+                },
+                error: function (xhr, status, error) {
+                    var err = xhr.responseText;
+                    alert(err);
+                }
+            }).then(function () {
+
+            })
+        }
+    </script>
+}
+
+<html>
+<body>
+    <div class="container-fluid">
+        <div id="filters shadow" class="mb-3 d-flex flex-row-reverse">
+
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Filtre
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="#">Laveste pris</a></li>
+                    <li><a class="dropdown-item" href="#">Højeste pris</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div id="catalog" class="container-fluid flex-row justify-content-center align-items-center ">
+            @for (int i = 0; i < Model.Count; i = i + 3)
+            {
+                <div class="row">
+
+                    <div class="col-lg-4 d-flex justify-content-center align-items-center mb-5">
+                        @if (i < Model.Count)
+                        {
+                            @Html.Partial("_Product", Model[i])
+
+@*                             <div class="card" style="width: 18rem;">
+                                <a class="" href="@url/@Model[i].id">
+                                    <img class="card-img-top" src="~/content/images/Jacket.jpg" alt="@Model[i].name">
+                                </a>
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model[i].name</h5>
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <h7 class="card-title mr-2">@Model[i].price kr</h7>
+
+                                        <form>
+                                            <button class="btn btn-primary" type="submit" onclick="buyFunction(@Model[i].id)">
+                                            Buy
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div> *@
+                        }
+
+                    </div>
+
+                    <div class="col-lg-4 d-flex justify-content-center align-items-center mb-5">
+                        @if (i + 1 < Model.Count)
+                        {
+                            @Html.Partial("_Product", Model[i+1])
+
+
+@*                             <div class="card " style="width: 18rem;">
+                                <a class="" href="@url/@Model[i+1].id">
+                                    <img class="card-img-top" src="~/content/images/Jacket.jpg" alt="@Model[i+1].name">
+                                </a>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model[i + 1].name</h5>
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <h7 class="card-title mr-2">@Model[i + 1].price kr</h7>
+
+                                        <form>
+                                            <button class="product-class btn btn-primary" type="submit" onclick="buyFunction(@Model[i+1].id)">
+                                                Buy
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div> *@
+                        }
+
+                    </div>
+
+
+                    <div class="col-lg-4 d-flex justify-content-center align-items-center mb-5">
+                        @if (i + 2 < Model.Count)
+                        {
+                            @Html.Partial("_Product", Model[i + 2])
+
+
+@*                             <div class="card " style="width: 18rem;">
+                                <a class="" href="@url/@Model[i+2].id">
+                                    <img class="card-img-top" src="~/content/images/Jacket.jpg" alt="@Model[i+2].name">
+                                </a>
+
+                                <div class="card-body">
+                                    <h5 class="card-title">@Model[i + 2].name</h5>
+                                    <div class="d-flex flex-row justify-content-between align-items-center">
+                                        <h7 class="card-title mr-2">@Model[i + 2].price kr</h7>
+
+                                        <form>
+                                            <button class="btn btn-primary" type="submit" onclick="buyFunction(@Model[i+2].id)">
+                                                Buy
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div> *@
+                        }
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+@* Give the pager model to the pager partial view together with teh category saved inside the veiwdata*@
+ <partial name="_Pager" model="@pager" view-data="ViewData" />
+
+

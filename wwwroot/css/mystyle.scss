@@ -1,0 +1,19 @@
+//Custom variables are used instead of default bootstrap variables.
+/*$primary: #03fc30;*/
+
+//Import functions and variables
+@import '../lib/bootstrap/scss/_functions.scss';
+@import '../lib/bootstrap/scss/_variables.scss';
+
+//Change mapping of bootstrap classes
+/*$custom-theme-colors: ( 
+    "altlight": #f2ebfa, 
+    "altdark": #1e6b14, 
+    "zaun": #1e6b14, 
+);*/
+
+/*$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+*/
+//Import bootstrap
+@import '../lib/bootstrap/scss/bootstrap.scss';
+

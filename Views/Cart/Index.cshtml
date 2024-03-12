@@ -1,0 +1,129 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<ZaunShop.Models.CartItemModel>;
+
+@section Scripts{
+    <script>
+        var cartIcon = document.getElementById("lblCartCount")
+
+        function removeQuantity(productId, productPrice) {
+
+            var serviceURL = '@Url.Action("RemoveQuantity", "Cart")';
+
+            $.ajax({
+                type: "POST",
+                url: serviceURL,
+                data: { productId: productId },
+                success: function (result) {
+
+                    //Change quantity
+                    var tdquantity = document.getElementById("quantity-"+productId)
+
+                    if (tdquantity.innerHTML == "1") {
+                        document.getElementById("row-" + productId).remove();
+
+                        var cartIconQuantity = parseInt(cartIcon.innerHTML) - 1
+                        cartIcon.innerHTML = cartIconQuantity;
+                    } else {
+                        var cartIconQuantity = parseInt(cartIcon.innerHTML) - 1
+                        cartIcon.innerHTML = cartIconQuantity;
+
+
+                        var quantity = parseInt(tdquantity.innerHTML) - 1
+                        tdquantity.innerHTML = quantity;
+
+                        //Change price
+                        var tdprice = document.getElementById("price-" + productId)
+                        var splitstring = tdprice.innerHTML.split(" ")[0]
+
+                        var price = parseInt(splitstring) - productPrice
+                        tdprice.innerHTML = price.toString() + " kr"
+                    }
+
+                },
+                error: function (xhr, status, error) {
+                    var err = xhr.responseText;
+                    alert(err);
+                }
+            })
+        }
+
+        function addQuantity(productId, productPrice) {
+            var serviceURL = '@Url.Action("AddQuantity", "Cart")';
+
+            $.ajax({
+                type: "POST",
+                url: serviceURL,
+                data: { productId: productId },
+                success: function (result) {
+                    //Change cart icon quantity
+                    var cartIconQuantity = parseInt(cartIcon.innerHTML) + 1
+                    cartIcon.innerHTML = cartIconQuantity;
+
+                    //Change quantity
+                    var tdquantity = document.getElementById("quantity-" + productId)
+
+                    var quantity = parseInt(tdquantity.innerHTML) + 1
+                    tdquantity.innerHTML = quantity;
+
+                    //Change price
+                    var tdprice = document.getElementById("price-" + productId)
+                    var splitstring = tdprice.innerHTML.split(" ")[0]
+                    var price = parseInt(splitstring) + productPrice
+                    tdprice.innerHTML = price.toString() + " kr"
+
+                },
+                error: function (xhr, status, error) {
+                    var err = xhr.responseText;
+                    alert(err);
+                }
+            })
+        }
+    </script>
+}
+
+<html>
+<body>
+    <h1>Cart Items:</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Product id</th>
+                <th></th>
+                <th></th>
+            </tr>
+
+        </thead>
+        <tbody>
+            @foreach (var cartItem in Model)
+            {
+                var totalprice = cartItem.price * cartItem.quantity;
+
+                <tr id="row-@cartItem.productid">
+                    <td >@cartItem.name</td>
+                    <td id="quantity-@cartItem.productid">@cartItem.quantity</td>
+                    <td id="price-@cartItem.productid">@totalprice kr</td>
+                    <td >@cartItem.productid</td>
+
+                    <td>
+                        <button class="btn btn-primary text-white" onclick="addQuantity(@cartItem.productid, @cartItem.price)">
+                            Add
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-primary text-white" onclick="removeQuantity(@cartItem.productid, @cartItem.price)">
+                            Remove
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

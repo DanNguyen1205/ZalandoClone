@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ZaunShop</title>
+@*     <link rel="stylesheet" href="~/lib/bootstrap/scss/bootstrap.css" />
+ *@ <link rel="stylesheet" href="~/css/mystyle.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ZaunShop.styles.css" asp-append-version="true" />
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/styles.css" asp-append-version="true" />
+
+    @RenderSection("Styles", required: false)
+</head>
+<body>
+    <div class="d-none d-md-flex flex-row justify-content-between py-1 px-5 bg-grey" style="background:#dae2ed">
+        <span>
+            STREETWEAR TO HIGH FASHION
+        </span>
+        <span>
+            Gratis standardlevering ved køb for minimum 100.000.000 kr.*
+        </span>
+        <span>
+            1 minutters returret
+        </span>
+    </div>
+    <header class="px-5">
+        <div class="d-flex flex-row justify-content-center align-content-center pt-3">
+            <a class="navbar-brand d-none d-md-block" style="width:100px;" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/content/images/SalandoLogo.png" class="img-fluid" style="" alt="" />
+            </a>
+        </div>
+
+        <nav id="custom-navbar" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light mb-3">
+            <div class="d-flex  container-fluid">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="Browse" asp-action="Catalog" asp-route-id="Tops">Tops</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="" asp-action="">Bottoms</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="" asp-action="">Shoes</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link " asp-area="" asp-controller="" asp-action="">Accessories</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-red fw-bold" asp-area="" asp-controller="" asp-action="" style="color:red">Sale</a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="d-flex flex-row justify-content-between align-items-center">
+                    <div class="navbar-shopping-cart" style="margin-right:20px">
+                        <a class="" asp-controller="Cart" asp-action="Index">
+                            <i class="fa-solid fa-cart-shopping fa-xl" style="color: #ababab;"></i>
+                        </a>
+                        <span class='badge badge-warning' id='lblCartCount'>@ViewData["cartQuantity"]</span>
+                    </div>
+
+
+                    <div id="navbar-account-section">
+                        <div class="flex-grow-1-sm">
+                            <partial name="_LoginStatusPartial" />
+                        </div>
+                        <div class="flex-grow-1-sm">
+                            <partial name="_signUpPartial" />
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </nav>
+    </header>
+
+    <hr  />
+    <div class="">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top text-muted" style="position:absolute; width:100%; white-space:nowrap; line-height:60px;">
+        <div class="container">
+            &copy; 2024 - ZaunShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

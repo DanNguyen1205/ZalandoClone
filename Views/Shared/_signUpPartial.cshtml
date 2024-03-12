@@ -1,0 +1,8 @@
+﻿@if (User == null || User.Identity == null || User.Identity.IsAuthenticated)
+{
+@*     <a asp-action="Signup" asp-controller="Account" class="btn btn-link">Signup</a>
+ *@}
+else
+{
+    <a asp-action="Signup" asp-controller="Account" class="btn btn-link  ">Signup</a>
+}

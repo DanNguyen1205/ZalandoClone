@@ -1,0 +1,107 @@
+﻿.badge {
+    padding-left: 9px;
+    padding-right: 9px;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
+}
+
+.label-warning[href],
+.badge-warning[href] {
+    background-color: #c67605;
+}
+
+#lblCartCount {
+    font-size: 15px;
+    background: #ff0000;
+    color: #fff;
+    padding: 3px 5px;
+    vertical-align: top;
+    margin-left: -10px;
+}
+
+ul.ulcustom {
+    margin:0px;
+    padding: 0px;
+}
+
+ul > li.ilcustom {
+    display:inline-block;
+    margin-right: 60px;
+    padding-top:20px;
+    padding-bottom:20px;
+}
+
+ul > li > a {
+    color:white;
+    text-decoration:none;
+}
+
+ul > li > a:hover {
+    color: white;
+    text-decoration: underline;
+}
+
+.no-wrap{
+    flex-shrink:0;
+    flex:0 0 auto;
+    white-space:nowrap;
+
+}
+
+
+#sale-banner-header {
+    padding: 50px;
+}
+
+#sale-banner-brands {
+    padding: 0px 50px;
+}
+
+#custom-navbar {
+    padding: 0px;
+}
+
+.banner-header {
+    padding: 50px 50px 0px 50px;
+}
+
+.banner-products {
+    padding: 50px;
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+    #sale-banner-header {
+        padding: 50px 300px;
+    }
+
+    #sale-banner-brands {
+        padding: 0px 300px;
+    }
+
+    #custom-navbar {
+        padding: 0px 150px;
+    }
+
+    .banner-header {
+        padding: 25px 300px 0px 300px
+    }
+
+    .banner-products {
+        padding: 25px 300px 0px 300px
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #sale-banner-brands {
+        padding: 25px 300px 0px 300px
+    }
+
+    #custom-navbar {
+        padding: 25px 300px 0px 300px
+    }
+
+
+}
+

@@ -1,0 +1,21 @@
+﻿@model ZaunShop.Models.BannerModel
+
+<div id="banner">
+    <header class="d-flex flex-row banner-header" style="background:grey; height:400px;">
+        <div>
+            <h1>Skil dig ud</h1>
+            <h2>Nye hits fra dine nordiske favoritbands</h2>
+            <span>Blablablabla balblabl blabla</span>
+            <button>Opdag mere</button>
+        </div>
+
+        <img src="@Model.picString">
+
+    </header>
+    <div class="banner-products d-flex flex-row h-100" style="background:#c7c7c7;">
+        @for (int i = 0; i < Model.products.Count; i++)
+        {
+            @await Html.PartialAsync("_Product", Model.products[i])
+        }
+    </div>
+</div>

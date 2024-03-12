@@ -1,0 +1,63 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model ZaunShop.Models.DomainModels.User
+
+
+<div class="container border">
+    <form method="post">
+        <div class="text-danger" asp-validation-summary="All"></div>
+        <div class="mb-3 row">
+
+            <label asp-for="firstname"></label>
+
+            <div class="col-5 mb-3">
+                <input type="text" asp-for="firstname" value="" class="form-control" />
+                <span class="text-danger" asp-validation-for="firstname"></span>
+            </div>
+
+        </div>
+
+        <div class="mb-3 row">
+            <label asp-for="lastname"></label>
+
+            <div class="col-5 mb-3">
+                <input type="text" asp-for="lastname" value="" asp-validation-for="LastName" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label asp-for="email"></label>
+
+            <div class="col-5 mb-3">
+                <input type="text" asp-for="email" value="" asp-validation-for="Email" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label asp-for="phone"></label>
+
+            <div class="col-5 mb-3">
+                <input type="text" asp-for="phone" value="" asp-validation-for="phone" class="form-control" />
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <label asp-for="password"></label>
+
+            <div class="col-5 mb-3">
+                <input type="password" asp-for="password" value="" asp-validation-for="password" class="form-control" />
+            </div>
+        </div>
+
+
+        <div class="mb-3 row">
+            <div class="col-5">
+                <button type="submit" asp-action="Signup" asp-controller="Account" class="form-control btn btn-primary">Create account</button>
+            </div>
+        </div>
+
+    </form>
+</div>
